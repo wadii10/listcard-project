@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ListProduct from "./Components/ListProduct";
 
 function App() {
+  const data = [
+    {
+      id: Math.random,
+      name: "iphone13",
+      img: "data:image/jpeg;base64,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",
+      price: "1300$",
+    },
+    {
+      id: Math.random,
+      name: "Samsungs21",
+      img: "https://www.tunisianet.com.tn/188910-large/telephone-portable-samsung-galaxy-s21-ultra-5g-noir-fantome.jpg",
+      price: "900$",
+    },
+    {
+      id: Math.random,
+      name: "Samsung s20",
+      img: "https://c0.lestechnophiles.com/images.frandroid.com/wp-content/uploads/2020/01/samsung-galaxy-s20-frandroid-2020-5g.png?resize=580,580",
+      price: "700$",
+    },
+    {
+      id: Math.random,
+      name: "Samsung s10",
+      img: "https://www.tunisianet.com.tn/129313-large/telephone-portable-samsung-galaxy-s10-bleu-sim-offerte.jpg",
+      price: "500$",
+    },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ListProduct list={data} />
     </div>
   );
 }
